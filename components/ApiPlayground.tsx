@@ -128,16 +128,14 @@ export default function ApiPlayground() {
 
   return (
     <div className="not-prose my-6 rounded-xl border bg-card text-card-foreground shadow-sm">
-      <div className="flex flex-col gap-2 p-4 md:flex-row md:items-center md:justify-between">
+      <div className="flex flex-col gap-3 p-4 md:flex-row md:items-center md:justify-between">
         <div className="min-w-0">
           <div className="text-base font-semibold">API Playground</div>
-          <div className="text-sm text-muted-foreground">
-            在浏览器里直接发起请求；若遇到跨域限制，请确认服务端已开启 CORS。
-          </div>
+          <div className="text-sm text-muted-foreground">浏览器直接发起请求。</div>
         </div>
         <button
           type="button"
-          className="inline-flex items-center justify-center rounded-md bg-primary px-3 py-2 text-sm font-medium text-primary-foreground disabled:cursor-not-allowed disabled:opacity-60"
+          className="inline-flex w-full items-center justify-center rounded-md bg-primary px-3 py-2 text-sm font-medium text-primary-foreground disabled:cursor-not-allowed disabled:opacity-60 md:w-auto"
           onClick={async () => {
             setError(null);
             setResponseMeta(null);
@@ -231,10 +229,13 @@ export default function ApiPlayground() {
               <div className="text-sm font-medium">Path Params</div>
               <div className="grid gap-2">
                 {requiredParams.map((name) => (
-                  <label key={name} className="grid grid-cols-[120px_1fr] items-center gap-2">
-                    <div className="text-sm text-muted-foreground">{name}</div>
+                  <label
+                    key={name}
+                    className="grid grid-cols-1 gap-1 sm:grid-cols-[120px_1fr] sm:items-center sm:gap-2"
+                  >
+                    <div className="text-xs text-muted-foreground sm:text-sm">{name}</div>
                     <input
-                      className="w-full rounded-md border bg-background px-3 py-2 text-sm font-mono"
+                      className="w-full rounded-md border bg-background px-3 py-2 text-xs font-mono sm:text-sm"
                       value={params[name] ?? ''}
                       onChange={(e) => setParams((p) => ({ ...p, [name]: e.target.value }))}
                       placeholder={name}
@@ -252,7 +253,7 @@ export default function ApiPlayground() {
 
           <div className="space-y-1">
             <div className="text-sm font-medium">Request</div>
-            <div className="rounded-md border bg-muted px-3 py-2 text-xs font-mono">
+            <div className="break-all rounded-md border bg-muted px-3 py-2 text-xs font-mono">
               {endpoint.method} {url}
             </div>
           </div>
@@ -261,14 +262,12 @@ export default function ApiPlayground() {
             <label className="block space-y-1">
               <div className="text-sm font-medium">JSON Body</div>
               <textarea
-                className="min-h-40 w-full resize-y rounded-md border bg-background px-3 py-2 text-sm font-mono"
+                className="min-h-36 w-full resize-y rounded-md border bg-background px-3 py-2 text-xs font-mono sm:min-h-40 sm:text-sm"
                 value={body}
                 onChange={(e) => setBody(e.target.value)}
                 spellCheck={false}
               />
-              <div className="text-xs text-muted-foreground">
-                发送前会先进行 JSON 校验；无内容时会用 {'{}'}。
-              </div>
+              <div className="text-xs text-muted-foreground">发送前会先校验 JSON。</div>
             </label>
           ) : null}
         </div>
@@ -284,7 +283,7 @@ export default function ApiPlayground() {
 
           {responseMeta ? (
             <div className="rounded-md border bg-muted p-3 text-xs">
-              <div className="flex flex-wrap gap-x-4 gap-y-1">
+              <div className="grid gap-1 sm:flex sm:flex-wrap sm:gap-x-4">
                 <div>
                   Status: <span className="font-mono">{responseMeta.status}</span>{' '}
                   <span className="text-muted-foreground">{responseMeta.statusText}</span>
@@ -292,7 +291,7 @@ export default function ApiPlayground() {
                 <div>
                   Time: <span className="font-mono">{responseMeta.durationMs}ms</span>
                 </div>
-                <div className="truncate">
+                <div className="truncate sm:max-w-[320px]">
                   Content-Type:{' '}
                   <span className="font-mono">{responseMeta.contentType ?? 'unknown'}</span>
                 </div>
@@ -300,11 +299,11 @@ export default function ApiPlayground() {
             </div>
           ) : (
             <div className="rounded-md border bg-muted p-3 text-xs text-muted-foreground">
-              点击 Send 获取响应
+              暂无响应
             </div>
           )}
 
-          <pre className="max-h-[420px] overflow-auto rounded-md border bg-background p-3 text-xs font-mono">
+          <pre className="max-h-[280px] overflow-auto rounded-md border bg-background p-3 text-xs font-mono sm:max-h-[360px] md:max-h-[420px]">
             {responseText || ' '}
           </pre>
         </div>
@@ -312,4 +311,3 @@ export default function ApiPlayground() {
     </div>
   );
 }
-
