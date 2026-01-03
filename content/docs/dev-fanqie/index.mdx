@@ -1,0 +1,115 @@
+---
+title: Dev.Fanqie
+description: FQNovel Service API
+---
+
+import ApiPlayground from '@/components/ApiPlayground';
+
+BaseURL：`https://fq.amethysty.dev`
+
+<ApiPlayground />
+
+### 1. 健康检查
+```
+GET /api/fqnovel/health
+```
+
+响应示例：
+```json
+{
+  "status": "UP",
+  "service": "FQNovel Service",
+  "timestamp": 1672531200000
+}
+```
+
+### 2. 获取单个章节内容 (新增)
+```
+GET /api/fqnovel/item_id/{itemId}
+```
+
+参数：
+- `itemId`: 章节ID
+
+响应：直接返回解密后的章节文本内容
+
+示例：
+```bash
+curl "http://localhost:9999/api/fqnovel/item_id/7282975997584998953"
+```
+
+### 3. 获取章节内容 (兼容接口)
+```
+GET /api/fqnovel/chapter/{bookId}/{chapterId}
+POST /api/fqnovel/chapter
+```
+
+这些接口保持向后兼容，但内部使用新的 API 模式。
+
+### 4. 批量获取章节内容 (更新)
+```
+POST /api/fqnovel/chapters/batch
+```
+
+请求体：
+```json
+{
+  "bookId": "7276384138653862966",
+  "chapterIds": ["7282975997584998953", "7282975997584998954"]
+}
+```
+
+### 5. 批量获取章节内容 (新增 - 支持范围)
+```
+POST /api/fqnovel/chapters/batch
+```
+
+请求体：
+```json
+{
+  "bookId": "7276384138653862966",
+  "chapterRange": "1-30"
+}
+```
+
+参数：
+- `bookId`: 书籍ID (必须)
+- `chapterRange`: 章节范围，支持格式：
+  - 范围格式: "1-30" (获取章节1到30)
+  - 单个章节: "5" (只获取章节5)
+  - 最少1章，最多30章
+
+响应：
+```json
+{
+  "code": 0,
+  "message": "success",
+  "data": {
+    "bookId": "7276384138653862966",
+    "bookInfo": {
+      "bookId": "7276384138653862966",
+      "bookName": ""
+    },
+    "chapters": {
+      "1": {
+        "chapterName": "第一章 标题",
+        "rawContent": "<html>原始HTML内容</html>",
+        "txtContent": "纯文本内容",
+        "wordCount": 1500,
+        "isFree": true
+      },
+      "2": {
+        "chapterName": "第二章 标题",
+        "rawContent": "<html>原始HTML内容</html>",
+        "txtContent": "纯文本内容",
+        "wordCount": 1600,
+        "isFree": true
+      }
+    },
+    "requestedRange": "1-30",
+    "successCount": 2,
+    "totalRequested": 30
+  },
+  "serverTime": 1672531200000
+}
+```

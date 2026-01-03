@@ -1,0 +1,7 @@
+{
+  "title": "Dev.Fanqie",
+  "description": "FQNovel Service API",
+  "root": true,
+  "pages": ["index"]
+}
+
