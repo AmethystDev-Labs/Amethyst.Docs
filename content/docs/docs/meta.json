@@ -1,0 +1,8 @@
+{
+  "title": "Docs",
+  "description": "General documentation",
+  "root": true,
+  "icon": "BookOpen",
+  "pages": ["index", "test"]
+}
+

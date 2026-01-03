@@ -1,0 +1,8 @@
+{
+  "title": "API",
+  "description": "API docs & playground",
+  "root": true,
+  "icon": "Braces",
+  "pages": ["index", "dev-fanqie"]
+}
+
