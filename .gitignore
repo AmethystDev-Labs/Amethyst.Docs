@@ -3,6 +3,7 @@
 
 # generated content
 .source
+.tmp-fumadocs
 
 # test & build
 /coverage
