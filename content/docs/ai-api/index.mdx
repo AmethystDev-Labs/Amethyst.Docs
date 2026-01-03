@@ -1,0 +1,38 @@
+---
+title: Overview
+description: OpenAI-compatible API overview
+---
+
+BaseURL：`https://ai.amethyst.ltd/v1`
+
+本板块接口遵循 OpenAI API 格式（路径、字段命名、响应结构保持一致），可直接替换 SDK 的 `base_url`/`api_base` 使用。
+
+## Quickstart
+
+### 1) 设置 Key
+
+使用 `Authorization: Bearer <API_KEY>`。
+
+### 2) Chat Completions
+
+```bash
+curl https://ai.amethyst.ltd/v1/chat/completions \
+  -H "Authorization: Bearer $AI_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "gpt-4o-mini",
+    "messages": [
+      { "role": "system", "content": "You are a helpful assistant." },
+      { "role": "user", "content": "Hello!" }
+    ]
+  }'
+```
+
+## 目录
+
+- 认证与通用约定：`/docs/ai-api/authentication`
+- Models：`/docs/ai-api/models`
+- Chat Completions：`/docs/ai-api/chat-completions`
+- Embeddings：`/docs/ai-api/embeddings`
+- Images：`/docs/ai-api/images`
+

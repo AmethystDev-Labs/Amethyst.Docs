@@ -1,0 +1,31 @@
+---
+title: Authentication
+description: Auth, headers, errors
+---
+
+BaseURL：`https://ai.amethyst.ltd/v1`
+
+## 请求头
+
+- `Authorization: Bearer <API_KEY>`（必填）
+- `Content-Type: application/json`（JSON 请求体时必填）
+
+## 错误格式
+
+遵循 OpenAI 风格的错误结构（示例）：
+
+```json
+{
+  "error": {
+    "message": "Invalid authentication credentials",
+    "type": "invalid_request_error",
+    "param": null,
+    "code": "invalid_api_key"
+  }
+}
+```
+
+## 速率限制
+
+若触发限流，通常会返回 `429` 并带有上述 `error` 结构。
+

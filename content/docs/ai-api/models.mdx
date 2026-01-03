@@ -1,0 +1,46 @@
+---
+title: Models
+description: List and retrieve models
+---
+
+BaseURL：`https://ai.amethyst.ltd/v1`
+
+## 1. 列出模型
+
+```
+GET /models
+```
+
+示例：
+```bash
+curl https://ai.amethyst.ltd/v1/models \
+  -H "Authorization: Bearer $AI_API_KEY"
+```
+
+响应示例（结构遵循 OpenAI）：
+```json
+{
+  "object": "list",
+  "data": [
+    {
+      "id": "gpt-4o-mini",
+      "object": "model",
+      "created": 1710000000,
+      "owned_by": "amethyst"
+    }
+  ]
+}
+```
+
+## 2. 获取单个模型
+
+```
+GET /models/{model}
+```
+
+示例：
+```bash
+curl https://ai.amethyst.ltd/v1/models/gpt-4o-mini \
+  -H "Authorization: Bearer $AI_API_KEY"
+```
+

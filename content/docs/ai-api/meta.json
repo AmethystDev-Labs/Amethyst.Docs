@@ -1,0 +1,8 @@
+{
+  "title": "AI API",
+  "description": "OpenAI-compatible API",
+  "root": true,
+  "icon": "Sparkles",
+  "pages": ["index", "authentication", "models", "chat-completions", "embeddings", "images"]
+}
+

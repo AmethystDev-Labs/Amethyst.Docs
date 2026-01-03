@@ -1,0 +1,35 @@
+---
+title: Images
+description: Generate images (OpenAI compatible)
+---
+
+BaseURL：`https://ai.amethyst.ltd/v1`
+
+## 生成图片
+
+```
+POST /images/generations
+```
+
+示例：
+```bash
+curl https://ai.amethyst.ltd/v1/images/generations \
+  -H "Authorization: Bearer $AI_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "gpt-image-1",
+    "prompt": "A clean, modern logo for Amethyst",
+    "size": "1024x1024"
+  }'
+```
+
+响应示例（结构遵循 OpenAI）：
+```json
+{
+  "created": 1710000000,
+  "data": [
+    { "url": "https://..." }
+  ]
+}
+```
+

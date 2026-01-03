@@ -1,0 +1,40 @@
+---
+title: Embeddings
+description: Create embeddings (OpenAI compatible)
+---
+
+BaseURL：`https://ai.amethyst.ltd/v1`
+
+## 创建向量
+
+```
+POST /embeddings
+```
+
+示例：
+```bash
+curl https://ai.amethyst.ltd/v1/embeddings \
+  -H "Authorization: Bearer $AI_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "text-embedding-3-small",
+    "input": "hello world"
+  }'
+```
+
+响应示例（结构遵循 OpenAI）：
+```json
+{
+  "object": "list",
+  "data": [
+    {
+      "object": "embedding",
+      "embedding": [0.0123, -0.0456],
+      "index": 0
+    }
+  ],
+  "model": "text-embedding-3-small",
+  "usage": { "prompt_tokens": 2, "total_tokens": 2 }
+}
+```
+

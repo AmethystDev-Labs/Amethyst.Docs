@@ -1,0 +1,54 @@
+---
+title: Chat Completions
+description: Create chat completions (OpenAI compatible)
+---
+
+BaseURL：`https://ai.amethyst.ltd/v1`
+
+## 创建对话补全
+
+```
+POST /chat/completions
+```
+
+请求体（OpenAI 格式）：
+- `model`: 模型 ID
+- `messages`: 消息数组（`role`: `system`/`user`/`assistant`，`content`）
+- 其他参数如 `temperature`、`top_p`、`max_tokens` 等保持兼容
+
+示例：
+```bash
+curl https://ai.amethyst.ltd/v1/chat/completions \
+  -H "Authorization: Bearer $AI_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "gpt-4o-mini",
+    "temperature": 0.7,
+    "messages": [
+      { "role": "user", "content": "用一句话介绍 Amethyst。" }
+    ]
+  }'
+```
+
+响应示例（结构遵循 OpenAI）：
+```json
+{
+  "id": "chatcmpl_xxx",
+  "object": "chat.completion",
+  "created": 1710000000,
+  "model": "gpt-4o-mini",
+  "choices": [
+    {
+      "index": 0,
+      "message": { "role": "assistant", "content": "..." },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 10,
+    "completion_tokens": 20,
+    "total_tokens": 30
+  }
+}
+```
+
