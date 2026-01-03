@@ -19,12 +19,6 @@ export default function HomePage() {
           >
             Get started
           </Link>
-          <Link
-            href="/docs"
-            className="inline-flex h-10 items-center justify-center rounded-md border border-fd-border px-4 text-sm font-medium"
-          >
-            Browse docs
-          </Link>
         </div>
 
         <p className="mt-6 text-xs text-fd-muted-foreground">

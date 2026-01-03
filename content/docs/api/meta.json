@@ -1,7 +1,0 @@
-{
-  "title": "Dev.Fanqie",
-  "description": "FQNovel Service API",
-  "root": true,
-  "icon": "Braces",
-  "pages": ["index", "dev-fanqie"]
-}

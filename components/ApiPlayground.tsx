@@ -192,7 +192,7 @@ export default function ApiPlayground() {
       </div>
 
       <div className="grid gap-4 border-t p-4 md:grid-cols-2">
-        <div className="space-y-3">
+        <div className="min-w-0 space-y-3">
           <label className="block space-y-1">
             <div className="text-sm font-medium">Endpoint</div>
             <select
@@ -272,7 +272,7 @@ export default function ApiPlayground() {
           ) : null}
         </div>
 
-        <div className="space-y-3">
+        <div className="min-w-0 space-y-3">
           <div className="text-sm font-medium">Response</div>
 
           {error ? (
@@ -303,7 +303,7 @@ export default function ApiPlayground() {
             </div>
           )}
 
-          <pre className="max-h-[280px] overflow-auto rounded-md border bg-background p-3 text-xs font-mono sm:max-h-[360px] md:max-h-[420px]">
+          <pre className="max-h-[280px] max-w-full overflow-auto rounded-md border bg-background p-3 text-xs font-mono whitespace-pre-wrap break-words sm:max-h-[360px] sm:whitespace-pre md:max-h-[420px]">
             {responseText || ' '}
           </pre>
         </div>
